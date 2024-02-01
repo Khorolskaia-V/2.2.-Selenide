@@ -2,8 +2,14 @@ package ru.netology.service;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.commands.ShouldBe;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -13,7 +19,21 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 class AppCard {
+private WebDriver driver;
 
+    @BeforeEach
+    void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver();
+        driver.get("http://localhost:9999/");
+    }
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
     @Test
     void shoulTest() throws InterruptedException {
         int interval = 1000;
