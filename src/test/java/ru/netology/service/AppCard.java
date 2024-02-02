@@ -1,7 +1,6 @@
 package ru.netology.service;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.commands.ShouldBe;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -16,7 +15,7 @@ class AppCard {
 
     @Test
     void shoulTest() throws InterruptedException {
-        int interval = 1000;
+        int interval = 0;
 
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Ярославль");
@@ -43,15 +42,6 @@ class AppCard {
                 .shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .shouldHave(Condition.exactText("Встреча успешно забронирована на " + date));
         Thread.sleep(interval);
-
-
-
-
-
-
-
-
-
 
 
     }
